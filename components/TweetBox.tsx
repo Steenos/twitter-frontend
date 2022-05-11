@@ -4,20 +4,20 @@ import {CalendarIcon, EmojiHappyIcon,
         PhotographIcon,
         SearchCircleIcon,} from '@heroicons/react/outline'
 
-        import idl from '../idl.json';
-        import { useWallet, useConnection,useAnchorWallet, AnchorWallet } from '@solana/wallet-adapter-react'
+import idl from '../idl.json';
+import { useWallet } from '@solana/wallet-adapter-react'
         
-        import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
-        import { Program, ProgramAccount, Provider, web3 } from '@project-serum/anchor';
-        import TweetComponent from './Tweet'
+import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
+import { Program, ProgramAccount, Provider, web3 } from '@project-serum/anchor';
         
         
-        const a = JSON.stringify(idl);
-        const b = JSON.parse(a);
         
-        //Program address for twitter smart contract
-        const programId = new PublicKey('DUxkTsCrXHJKWzuPcT9xta1s3iZma6eXt7KaYvSSgDX1');
-        const network = web3.clusterApiUrl('devnet');
+const a = JSON.stringify(idl);
+const b = JSON.parse(a);
+        
+//Program address for twitter smart contract
+const programId = new PublicKey('DUxkTsCrXHJKWzuPcT9xta1s3iZma6eXt7KaYvSSgDX1');
+const network = web3.clusterApiUrl('devnet');
 
 
 
@@ -33,10 +33,6 @@ function TweetBox() {
     const [topic, setTopic] = useState<String>('')
     const [content, setContent] = useState<String>('')
 
-    //const { connection } = useConnection();
-    //const { publicKey, sendTransaction } = useWallet();
-    console.log("topic:", topic)
-    console.log("Content: ", content)
 
     const sendTweet = async (event: any) => {
         event?.preventDefault()
@@ -65,30 +61,7 @@ function TweetBox() {
 
         return 
     }
-    //const connection = new Connection(network)
-    //@ts-ignore
-    
-
-   /*  const handleTransSubmit = (event: any) => {
-        event?.preventDefault()
-
-        if (!publicKey) {
-            alert('Please connect your wallet!')
-            return
-        }
-
-        const tweet = web3.Keypair.generate()
-
-        await programId.rpc.sendTweet(topic, content, {
-            accounts: {
-                author: wallet?.publicKey,
-                tweet: tweet.publicKey,
-                systemProgram: web3.SystemProgram.programId,
-            },
-            signers: [tweet]
-        })
-
-    } */
+  
     const style = {
         buttonHover: ' h-5 w-5 cursor-pointer transition-transform duration-150 ease-out hover:scale-150'
     }
@@ -118,7 +91,7 @@ function TweetBox() {
                     <LocationMarkerIcon className={style.buttonHover}/>
                 </div>
 
-                <button className="bg-blue-300 rounded-full px-5 py-2 font-bold text-white"
+                <button className="bg-blue-500 rounded-full px-5 py-2 font-bold text-white"
                         onClick={sendTweet}>Tweet</button>
                 </div>
             </form>
